@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇×クイズ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1 id="page-title"><img src="images/system/title.png" alt="〇×クイズ"></h1>
+                <button id="header-restart-btn" class="btn btn-small header-btn" style="display: none;">TOPへ戻る</button>
+            </div>
+        </header>
+
+        <!-- スタート画面 -->
+        <div id="start-screen" class="screen active">
+            <div id="course-list" class="course-list">
+                <!-- コース一覧がJavaScriptで動的に生成されます -->
+            </div>
+            <div class="disclaimer-button-container">
+                <button id="disclaimer-btn" class="disclaimer-btn">免責事項</button>
+            </div>
+        </div>
+
+        <!-- クイズ画面 -->
+        <div id="quiz-screen" class="screen">
+            <!-- カウントダウンバー -->
+            <div class="countdown-bar-container">
+                <div id="left-bar" class="progress-bar left-bar"></div>
+                <div id="countdown-number" class="countdown-number">
+                    <img id="countdown-img-tens" src="images/system/0.png" alt="0">
+                    <img id="countdown-img-ones" src="images/system/0.png" alt="0">
+                </div>
+                <div id="right-bar" class="progress-bar right-bar"></div>
+            </div>
+
+            <!-- 問題文 -->
+            <div id="question-text" class="question-text"></div>
+
+            <!-- 解答ボタン -->
+            <div class="answer-buttons">
+                <button id="btn-circle" class="btn btn-answer btn-circle">
+                    <img src="images/icon/maru.png" alt="〇">
+                </button>
+                <button id="btn-cross" class="btn btn-answer btn-cross">
+                    <img src="images/icon/batu.png" alt="×">
+                </button>
+            </div>
+
+            <!-- キャラクター画像 -->
+            <div id="images-container" class="images-container"></div>
+
+            <!-- 結果メッセージ -->
+            <div id="result-message" class="result-message">
+                <div id="result-text"></div>
+                <button id="next-btn" class="btn btn-next">次へ</button>
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen">
+            <div class="result-summary">
+                <p class="result-title" id="result-question-text">問題文</p>
+                <p class="result-score"><span id="final-score">0</span> / <span id="final-total">0</span> (<span
+                        id="score-percentage">0</span>%)</p>
+            </div>
+            <div id="result-cards-container" class="result-cards-container">
+                <!-- カードがJavaScriptで動的に生成されます -->
+            </div>
+        </div>
+
+        <!-- 解説オーバーレイ -->
+        <div id="explanation-overlay" class="explanation-overlay">
+            <div class="explanation-content">
+                <button id="close-overlay" class="close-overlay">&times;</button>
+                <div id="overlay-character-image" class="overlay-character-image"></div>
+                <div id="overlay-question" class="overlay-question"></div>
+                <div id="overlay-answer" class="overlay-answer"></div>
+                <div id="overlay-explanation" class="overlay-explanation"></div>
+            </div>
+        </div>
+
+        <!-- 全問正解演出 -->
+        <div id="perfect-overlay" class="perfect-overlay">
+            <img src="images/system/perfect.png" alt="全問正解" class="perfect-image">
+        </div>
+
+        <!-- 免責事項モーダル -->
+        <div id="disclaimer-overlay" class="disclaimer-overlay">
+            <div class="disclaimer-content">
+                <button id="close-disclaimer" class="close-disclaimer">&times;</button>
+                <h2>免責事項</h2>
+                <p>本ツールは個人による非公式のファンコンテンツであり、株式会社カプコン様とは一切関係ありません。</p>
+                <p>使用しているキャラクターイラストは とりあか様 (@ft_toriaka) の素材をお借りしています。</p>
+                <p>本ツールの利用により生じた損害について、制作者は一切の責任を負いません。</p>
+            </div>
+        </div>
+    </div>
+    <script src="data/quizMenu.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

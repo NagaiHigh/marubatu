@@ -1,0 +1,791 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    min-height: auto;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.header-btn {
+    position: absolute;
+    right: 0;
+}
+
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+h1 img {
+    max-height: 200px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.score-area {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スタート画面 */
+#start-screen {
+    text-align: center;
+    padding: 20px;
+}
+
+/* コース選択 */
+.course-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.course-card {
+    background: white;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.course-card:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.course-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.course-card p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* クイズ画面 */
+.question-text {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.6;
+    width: 100%;
+}
+
+/* カウントダウンバー */
+.countdown-bar-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    margin: 30px 0;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 20px;
+    height: 80px;
+    max-width: 50%;
+    transition: width 0.5s ease;
+}
+
+.left-bar {
+    right: 50%;
+    background: linear-gradient(90deg, #dc3545 0%, #ff6b7a 100%);
+    border-radius: 10px 0 0 10px;
+}
+
+.right-bar {
+    left: 50%;
+    background: linear-gradient(90deg, #4dabf7 0%, #339af0 100%);
+    border-radius: 0 10px 10px 0;
+}
+
+.countdown-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.countdown-number img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.images-container {
+    display: block;
+    text-align: center;
+    margin: 30px 0;
+    width: 100%;
+    position: relative;
+}
+
+.question-image {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.images-container.single-image {
+    width: 100%;
+    text-align: center;
+}
+
+.images-container.single-image .question-image {
+    max-width: 500px;
+    max-height: 450px;
+}
+
+.images-container.double-images {
+    text-align: center;
+}
+
+.images-container.double-images .question-image {
+    max-width: 350px;
+    max-height: 400px;
+    margin: 0 10px;
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 15px 0 25px 0;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 60px;
+    font-size: 1.3em;
+}
+
+.btn-answer {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+}
+
+.btn-answer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.btn-circle:hover {
+    transform: scale(1.1);
+}
+
+.btn-cross:hover {
+    transform: scale(1.1);
+}
+
+.btn-answer:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-answer:disabled:hover {
+    transform: none;
+}
+
+.btn-next {
+    background: #4CAF50;
+    color: white;
+    margin: 20px auto 15px auto;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+}
+
+.btn-next:hover {
+    background: #45a049;
+}
+
+.result-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 30px;
+    border-radius: 15px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 10;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#result-text {
+    margin-bottom: 0;
+}
+
+.answer-icon {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.explanation-text {
+    margin-top: 15px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.result-message.show {
+    visibility: visible;
+    opacity: 1;
+    animation: bounceIn 0.5s;
+}
+
+.result-message.correct {
+    background: rgba(212, 237, 218, 0.98);
+    color: #155724;
+    border: 3px solid #28a745;
+}
+
+.result-message.incorrect {
+    background: rgba(248, 215, 218, 0.98);
+    color: #721c24;
+    border: 3px solid #dc3545;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* 結果画面 */
+#result-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#result-screen h2 {
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+/* 結果サマリー */
+.result-summary {
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.result-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.result-score {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.btn-small {
+    font-size: 0.9em;
+    padding: 12px 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* 結果カード一覧 */
+.result-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.result-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.result-card.correct {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 2px solid #28a745;
+}
+
+.result-card.incorrect {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    border: 2px solid #dc3545;
+}
+
+.result-card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.result-card-answer {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.result-card-answer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 解説オーバーレイ */
+.explanation-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.explanation-overlay.show {
+    display: flex;
+}
+
+/* 全問正解演出 */
+.perfect-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.perfect-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.perfect-overlay.fadeOut {
+    opacity: 0;
+}
+
+.perfect-image {
+    max-width: 80%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* 免責事項 */
+.disclaimer-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.disclaimer-btn {
+    background: transparent;
+    border: 1px solid #999;
+    color: #666;
+    padding: 8px 20px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.disclaimer-btn:hover {
+    background: #f5f5f5;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.disclaimer-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1500;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.disclaimer-overlay.show {
+    display: flex;
+}
+
+.disclaimer-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.disclaimer-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.disclaimer-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.disclaimer-content p:last-of-type {
+    margin-bottom: 0;
+}
+
+.close-disclaimer {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.close-disclaimer:hover {
+    color: #333;
+}
+
+.explanation-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+}
+
+.close-overlay:hover {
+    color: #000;
+}
+
+.overlay-character-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.overlay-character-image img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.overlay-question {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.overlay-answer {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.overlay-answer.correct {
+    background: #d4edda;
+    color: #155724;
+}
+
+.overlay-answer.incorrect {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.overlay-answer img {
+    width: 30px;
+    height: 30px;
+}
+
+.overlay-explanation {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .question-text {
+        font-size: 1.2em;
+    }
+
+    .answer-buttons {
+        gap: 15px;
+    }
+
+    .btn-answer {
+        width: 80px;
+        height: 80px;
+    }
+
+    .result-message {
+        font-size: 1.1em;
+        padding: 20px;
+        width: 95%;
+    }
+
+    .btn-next {
+        font-size: 1em;
+        padding: 10px 25px;
+    }
+
+    .images-container.double-images {
+        flex-direction: column;
+    }
+
+    .images-container.double-images .question-image {
+        max-width: 100%;
+        max-height: 35vh;
+    }
+
+    .images-container.single-image .question-image {
+        max-height: 35vh;
+    }
+
+    /* 結果画面のレスポンシブ */
+    .result-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 10px;
+    }
+
+    .result-title {
+        font-size: 1em;
+    }
+
+    .result-score {
+        font-size: 1.2em;
+    }
+
+    .result-card-answer {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-btn {
+        position: static;
+        font-size: 0.75em;
+        padding: 8px 12px;
+    }
+
+    .explanation-content {
+        padding: 20px;
+    }
+
+    .overlay-question {
+        font-size: 1.1em;
+    }
+
+    .overlay-answer {
+        font-size: 1em;
+    }
+
+    .overlay-explanation {
+        font-size: 1em;
+    }
+}

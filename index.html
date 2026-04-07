@@ -5,6 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>〇×クイズ</title>
+
+    <!-- OGP (Open Graph Protocol) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nagaihigh.github.io/marubatu/">
+    <meta property="og:title" content="ストリートファイター6 〇×クイズ">
+    <meta property="og:description" content="OD完全無敵を持ってるかのクイズに挑戦">
+    <meta property="og:image" content="https://nagaihigh.github.io/marubatu/images/system/title.png">
+    <meta property="og:site_name" content="SF6 〇×クイズ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ストリートファイター6 〇×クイズ">
+    <meta name="twitter:description" content="OD完全無敵を持ってるかのクイズに挑戦">
+    <meta name="twitter:image" content="https://nagaihigh.github.io/marubatu/images/system/title.png">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -66,8 +81,12 @@
         <div id="result-screen" class="screen">
             <div class="result-summary">
                 <p class="result-title" id="result-question-text">問題文</p>
-                <p class="result-score"><span id="final-score">0</span> / <span id="final-total">0</span> (<span
-                        id="score-percentage">0</span>%)</p>
+                <p class="result-score">
+                    <span id="final-score">0</span> / <span id="final-total">0</span> (<span id="score-percentage">0</span>%)
+                    <button id="share-btn" class="btn btn-share">
+                        <img src="images/system/logo.svg" alt="X" class="x-logo">
+                    </button>
+                </p>
             </div>
             <div id="result-cards-container" class="result-cards-container">
                 <!-- カードがJavaScriptで動的に生成されます -->

@@ -36,6 +36,7 @@ const perfectOverlay = document.getElementById("perfect-overlay");
 const disclaimerBtn = document.getElementById("disclaimer-btn");
 const disclaimerOverlay = document.getElementById("disclaimer-overlay");
 const closeDisclaimer = document.getElementById("close-disclaimer");
+const shareBtn = document.getElementById("share-btn");
 
 // 配列をシャッフルする関数（Fisher-Yates アルゴリズム）
 function shuffleArray(array) {
@@ -276,6 +277,9 @@ function showResult() {
   const percentage = Math.round((score / characters.length) * 100);
   scorePercentageSpan.textContent = percentage;
 
+  // Xシェアボタンのイベント設定
+  shareBtn.onclick = () => shareToTwitter();
+
   // 結果カードを生成
   displayResultCards();
 
@@ -393,6 +397,17 @@ disclaimerOverlay.addEventListener("click", (e) => {
     disclaimerOverlay.classList.remove("show");
   }
 });
+
+// Xでシェアする関数
+function shareToTwitter() {
+  const url = "https://nagaihigh.github.io/marubatu/";
+  const percentage = Math.round((score / characters.length) * 100);
+  const text = `ストリートファイター6 〇×クイズ\n【${currentQuestionText}】\n結果：${score}/${characters.length} (${percentage}%)\n\n#SF6 #SF6クイズ`;
+
+  const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+
+  window.open(twitterUrl, "_blank", "width=550,height=420");
+}
 
 // ページ読み込み時にコース一覧を表示
 window.addEventListener("load", () => {

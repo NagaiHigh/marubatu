@@ -12,12 +12,14 @@ const quizCourses = [
     description: "中足＝下段の中攻撃",
     dataFile: "questionsData2.js",
   },
-  //  {
-  //    id: "test",
-  //    title: "テスト",
-  //    description: "動作チェック用のコース",
-  //    dataFile: "questionsData3.js",
-  //  },
+  /*
+  {
+    id: "test",
+    title: "テスト",
+    description: "動作チェック用のコース",
+    dataFile: "questionsData3.js",
+  },
+  */
 ];
 
 // データファイルを自動的に読み込む

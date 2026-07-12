@@ -148,6 +148,11 @@ const questionsData1 = {
       images: ["sf6icon_a/alex.png"],
       explanation: "ありません。SA2・SA3が完全無敵です。",
     },
+    {
+      answer: true,
+      images: ["sf6icon_a/yasmine.png"],
+      explanation: "ODリパ・ン・アギラがあります。",
+    },
   ],
 };
 

@@ -147,6 +147,11 @@ const questionsData2 = {
       images: ["sf6icon_a/alex.png"],
       explanation: "ありません。",
     },
+    {
+      answer: true,
+      images: ["sf6icon_a/yasmine.png"],
+      explanation: "あります。",
+    },
   ],
 };
 
